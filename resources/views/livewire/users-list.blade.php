@@ -30,7 +30,7 @@
                                     <th>Email</th>
                                     <th>Username</th>
                                     <th>Date Registered</th>
-                                    <th></th>
+                                    <th>Total Accounts</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,7 @@
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->created_at->diffForHumans() }}</td>
                                     <td>
-
+                                        {{ $user->accounts()->count() }}
                                     </td>
                                 </tr>
                                 @endforeach
