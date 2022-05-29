@@ -82,6 +82,7 @@ class Index extends Component
         $this->name = $account->name;
         $this->email = $account->email;
         $this->username = $account->username;
+        $this->website = $account->website;
         $this->notes =  $account->notes ? Crypt::decryptString($account->notes) : null;
         $this->require_password = $account->require_password;
         $this->acctId = $account->id;
