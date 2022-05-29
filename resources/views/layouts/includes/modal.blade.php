@@ -202,7 +202,7 @@
                     @if ($website)
                     <div class="form-group col-md-12">
                         <label>Website</label>
-                        <h4>{{ $website }}</h4>
+                        <input type="text" class="form-control"  wire:model.defer="website"  readonly>
                     </div>
                     @endif
                     <div class="form-group col-md-12">
