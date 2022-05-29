@@ -226,7 +226,7 @@
                     @if ($notes)
                     <div class="form-group col-md-12">
                         <label>Notes</label>
-                        <h4>{{ $notes }}</h4>
+                        <textarea class="form-control" wire:model.defer="notes" rows="5" readonly></textarea>
                     </div>
                     @endif
 
