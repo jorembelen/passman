@@ -6,7 +6,7 @@
                 <div class="col-xl-12">
                     <div class="auth-form">
                         <div class="text-center mb-3">
-                            <h3>PassMan</h3>
+                            <img src="/assets/logo-4.png" alt="">
                         </div>
                         <h4 class="text-center mb-4">Sign up your account</h4>
 
