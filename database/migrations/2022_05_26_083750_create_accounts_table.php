@@ -19,7 +19,7 @@ class CreateAccountsTable extends Migration
             $table->string('name');
             $table->string('username')->nullable();
             $table->string('email')->nullable();
-            $table->string('password');
+            $table->text('password');
             $table->text('notes')->nullable();
             $table->boolean('require_password')->default(0);
             $table->timestamps();
