@@ -144,7 +144,7 @@ class Index extends Component
             'email' => 'nullable|required_without:username|email',
             'username' => 'required_without:email',
             'password' => 'required',
-            'notes' => 'required',
+            'notes' => 'nullable',
         ]);
 
         $user = User::findOrFail(auth()->id());
