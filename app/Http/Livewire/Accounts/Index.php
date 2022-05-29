@@ -18,8 +18,6 @@ class Index extends Component
     public $name, $email, $username, $password, $acctId, $value, $require_password, $my_password, $notes, $website;
     public $query = null;
     public $showPass = false;
-    public $showNotes = false;
-    public $enableNotes = false;
 
     protected $messages = [
         'value.required' => 'Please select number of characters.',
@@ -84,9 +82,7 @@ class Index extends Component
         $this->name = $account->name;
         $this->email = $account->email;
         $this->username = $account->username;
-        if($account->notes){
-            $this->enableNotes = true;
-        }
+        $this->notes =  $account->notes ? Crypt::decryptString($account->notes) : null;
         $this->require_password = $account->require_password;
         $this->acctId = $account->id;
     }
@@ -196,8 +192,6 @@ class Index extends Component
         $this->dispatchBrowserEvent('hide-form');
         $this->resetInput();
         $this->showPass = false;
-        $this->showNotes = false;
-        $this->enableNotes = false;
     }
 
     public function alertConfirm($id)
@@ -227,12 +221,6 @@ class Index extends Component
         $this->password = Crypt::decryptString($account->password);
     }
 
-    public function showNotes($acctId)
-    {
-        $this->showNotes = !$this->showNotes;
-        $this->enableNotes = !$this->enableNotes;
-        $account = Account::findOrFail($acctId);
-        $this->notes = Crypt::decryptString($account->notes);
-    }
+
 
 }

@@ -225,13 +225,8 @@
                     </div>
                     @if ($notes)
                     <div class="form-group col-md-12">
-                        <label>Notes</label> <br>
-                        @if ($enableNotes)
-                        <button type="button" class="btn btn-primary btn-xxs mb-2" wire:click.prevent="showNotes('{{ $acctId }}')">Decrypt Notes</button>
-                        @endif
-                        @if ($showNotes)
+                        <label>Notes</label>
                         <h4>{{ $notes }}</h4>
-                        @endif
                     </div>
                     @endif
 
