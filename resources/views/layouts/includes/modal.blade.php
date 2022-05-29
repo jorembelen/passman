@@ -226,7 +226,7 @@
                     @if ($notes)
                     <div class="form-group col-md-12">
                         <label>Notes</label>
-                        <textarea class="form-control" wire:model.defer="notes" rows="5" readonly></textarea>
+                        <textarea class="form-control" wire:model.defer="notes" rows="3" readonly></textarea>
                     </div>
                     @endif
 
