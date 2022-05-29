@@ -34,6 +34,7 @@
                                     <th>Account Name</th>
                                     <th>Email</th>
                                     <th>Username</th>
+                                    <th>Website</th>
                                     <th>Notes</th>
                                     <th></th>
                                 </tr>
@@ -45,6 +46,7 @@
                                     <td>{{ $account->name }}</td>
                                     <td>{{ $account->email }}</td>
                                     <td>{{ $account->username }}</td>
+                                    <td>{{ $account->website }}</td>
                                     <td>{{ $account->notes }}</td>
                                     <td>
                                         <div class="d-flex">
