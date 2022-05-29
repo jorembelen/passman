@@ -17,6 +17,7 @@ class CreateAccountsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id')->constrained();
             $table->string('name');
+            $table->string('website')->nullable();
             $table->string('username')->nullable();
             $table->string('email')->nullable();
             $table->longText('password');

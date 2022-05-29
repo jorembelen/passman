@@ -16,7 +16,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['delete'];
-    public $name, $email, $username, $password, $acctId, $value, $require_password, $my_password, $notes;
+    public $name, $email, $username, $password, $acctId, $value, $require_password, $my_password, $notes, $website;
     public $query = null;
     public $showPass = false;
 
@@ -104,6 +104,7 @@ class Index extends Component
             'username' => 'required_without:email',
             'password' => 'nullable',
             'notes' => 'nullable',
+            'website' =>  ['nullable','regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
             'require_password' => 'required',
         ]);
         $account = Account::findOrFail($acctId);
@@ -145,6 +146,7 @@ class Index extends Component
             'username' => 'required_without:email',
             'password' => 'required',
             'notes' => 'nullable',
+            'website' =>  ['nullable','regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
         ]);
 
         $user = User::findOrFail(auth()->id());

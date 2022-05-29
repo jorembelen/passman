@@ -20,6 +20,7 @@ class Account extends Model
         'password',
         'require_password',
         'notes',
+        'website',
     ];
 
     public static function boot()

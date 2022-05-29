@@ -30,6 +30,13 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-12">
+                        <label>Website</label>
+                        <input type="text" class="form-control" wire:model.defer="website">
+                        @error('website')
+                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-12">
                         <div class="input-group transparent-append">
                             <input type="text" class="form-control" id="copy_{{ $password }}"   wire:model.defer="password" placeholder="click to show password">
                             <div class="input-group-append">
@@ -105,6 +112,13 @@
                         <label>Username</label>
                         <input type="text" class="form-control" wire:model.defer="username" >
                         @error('username')
+                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Website</label>
+                        <input type="text" class="form-control" wire:model.defer="website">
+                        @error('website')
                         <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
                         @enderror
                     </div>
