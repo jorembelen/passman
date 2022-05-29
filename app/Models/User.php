@@ -61,11 +61,6 @@ class User extends Authenticatable
         $this->attributes['id'] = Str::uuid();
     }
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
-
     public function loginSecurity()
     {
         return $this->hasOne(LoginSecurity::class);

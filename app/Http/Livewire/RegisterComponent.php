@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterComponent extends Component
 {
@@ -17,6 +18,7 @@ class RegisterComponent extends Component
             'email' => 'required|email|unique:users,email',
             'password' => 'confirmed|min:6',
         ]);
+        $data['password'] = Hash::make($this->password);
         $user = User::create($data);
         auth()->login($user);
         return redirect('/2fa');
