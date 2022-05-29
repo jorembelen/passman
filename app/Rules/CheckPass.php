@@ -40,6 +40,6 @@ class CheckPass implements Rule
      */
     public function message()
     {
-        return 'This password did not match with our record.';
+        return 'This password did not match with our records. Try again.';
     }
 }

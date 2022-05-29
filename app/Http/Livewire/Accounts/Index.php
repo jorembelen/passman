@@ -9,7 +9,6 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class Index extends Component
 {
@@ -21,7 +20,8 @@ class Index extends Component
     public $showPass = false;
 
     protected $messages = [
-        'value.required' => 'Please select number of characters.'
+        'value.required' => 'Please select number of characters.',
+        'my_password.required' => 'Password is required to proceed.'
     ];
 
     public function mount()
