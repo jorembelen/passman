@@ -98,9 +98,6 @@ class Index extends Component
         $this->email = $account->email;
         $this->username = $account->username;
         $this->notes =  $account->notes ? Crypt::decryptString($account->notes) : null;
-        // if($account->notes){
-        //     $this->enableNotes = true;
-        // }
         $this->require_password = $account->require_password == 1 ? true : false;
         $this->acctId = $account->id;
     }
@@ -191,6 +188,7 @@ class Index extends Component
         $this->password = null;
         $this->value = null;
         $this->notes = null;
+        $this->website = null;
     }
 
     public function closeModal()
