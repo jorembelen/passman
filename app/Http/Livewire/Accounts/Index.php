@@ -18,6 +18,8 @@ class Index extends Component
     public $name, $email, $username, $password, $acctId, $value, $require_password, $my_password, $notes, $website;
     public $query = null;
     public $showPass = false;
+    public $showNotes = false;
+    public $enableNotes = false;
 
     protected $messages = [
         'value.required' => 'Please select number of characters.',
@@ -82,6 +84,9 @@ class Index extends Component
         $this->name = $account->name;
         $this->email = $account->email;
         $this->username = $account->username;
+        if($account->notes){
+            $this->enableNotes = true;
+        }
         $this->require_password = $account->require_password;
         $this->acctId = $account->id;
     }
@@ -92,6 +97,10 @@ class Index extends Component
         $this->name = $account->name;
         $this->email = $account->email;
         $this->username = $account->username;
+        $this->notes =  $account->notes ? Crypt::decryptString($account->notes) : null;
+        // if($account->notes){
+        //     $this->enableNotes = true;
+        // }
         $this->require_password = $account->require_password == 1 ? true : false;
         $this->acctId = $account->id;
     }
@@ -101,14 +110,14 @@ class Index extends Component
         $data = $this->validate([
             'name' => 'required',
             'email' => 'nullable|email|required_without:username',
-            'username' => 'required_without:email',
+            'username' => 'nullable|required_without:email',
             'password' => 'nullable',
-            'notes' => 'nullable',
             'website' =>  ['nullable','regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
             'require_password' => 'required',
         ]);
         $account = Account::findOrFail($acctId);
 
+        $data['notes'] = $this->notes ? Crypt::encryptString($this->notes) : null;
         $data['password'] = $this->password ? Crypt::encryptString($this->password) : $account->password;
         $account->update($data);
         $this->dispatchBrowserEvent('swal:modal', [
@@ -117,7 +126,7 @@ class Index extends Component
             'text' => '',
         ]);
         $this->resetInput();
-        $this->dispatchBrowserEvent('hide-form');
+        $this->closeModal();
 
     }
 
@@ -155,6 +164,9 @@ class Index extends Component
             if($this->require_password){
                 $data['require_password'] = 1;
             }
+            if($this->notes){
+                $data['notes'] = Crypt::encryptString($this->notes);
+            }
             $data['password'] = Crypt::encryptString($this->password);
 
             $user->accounts()->create($data);
@@ -164,8 +176,7 @@ class Index extends Component
                 'title' => 'Account was successfully added.',
                 'text' => '',
             ]);
-            $this->resetInput();
-            $this->dispatchBrowserEvent('hide-form');
+            $this->closeModal();
         }else{
             DB::rollBack();
             return redirect()->back();
@@ -179,6 +190,7 @@ class Index extends Component
         $this->username = null;
         $this->password = null;
         $this->value = null;
+        $this->notes = null;
     }
 
     public function closeModal()
@@ -186,6 +198,8 @@ class Index extends Component
         $this->dispatchBrowserEvent('hide-form');
         $this->resetInput();
         $this->showPass = false;
+        $this->showNotes = false;
+        $this->enableNotes = false;
     }
 
     public function alertConfirm($id)
@@ -213,7 +227,14 @@ class Index extends Component
         $this->showPass = !$this->showPass;
         $account = Account::findOrFail($acctId);
         $this->password = Crypt::decryptString($account->password);
+    }
 
+    public function showNotes($acctId)
+    {
+        $this->showNotes = !$this->showNotes;
+        $this->enableNotes = !$this->enableNotes;
+        $account = Account::findOrFail($acctId);
+        $this->notes = Crypt::decryptString($account->notes);
     }
 
 }

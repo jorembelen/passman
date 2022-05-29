@@ -35,7 +35,6 @@
                                     <th>Email</th>
                                     <th>Username</th>
                                     <th>Website</th>
-                                    <th>Notes</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -47,7 +46,6 @@
                                     <td>{{ $account->email }}</td>
                                     <td>{{ $account->username }}</td>
                                     <td>{{ $account->website }}</td>
-                                    <td>{{ $account->notes }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="#" class="btn btn-info shadow btn-xs sharp mr-1" wire:click.prevent="{{ $account->require_password == 1 ? 'show' : 'view' }}('{{ $account->id }}')"><i class="fa fa-eye"></i></a>

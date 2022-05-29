@@ -53,12 +53,12 @@
                     </div>
                     <div class="form-group col-md-12">
                         <a href="#" class="btn btn-info btn-xs mr-3" wire:click.prevent="generate">Generate Password</a>
-                            <label class="radio-inline mr-2"><input type="radio" value="8" name="optradio" wire:model.defer="value"> 8</label>
-                            <label class="radio-inline mr-2"><input type="radio" value="16" name="optradio" wire:model.defer="value"> 16</label>
-                            <label class="radio-inline mr-2"><input type="radio" value="24" name="optradio" wire:model.defer="value"> 24</label>
-                            @error('value')
-                            <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                            @enderror
+                        <label class="radio-inline mr-2"><input type="radio" value="8" name="optradio" wire:model.defer="value"> 8</label>
+                        <label class="radio-inline mr-2"><input type="radio" value="16" name="optradio" wire:model.defer="value"> 16</label>
+                        <label class="radio-inline mr-2"><input type="radio" value="24" name="optradio" wire:model.defer="value"> 24</label>
+                        @error('value')
+                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="form-check">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label>Notes</label>
-                       <textarea class="form-control" wire:model.defer="notes"></textarea>
+                        <textarea class="form-control" wire:model.defer="notes"></textarea>
                         @error('notes')
                         <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
                         @enderror
@@ -139,12 +139,12 @@
                     </div>
                     <div class="form-group col-md-12">
                         <a href="#" class="btn btn-info btn-xs mr-3" wire:click.prevent="generate">Generate Password</a>
-                            <label class="radio-inline mr-2"><input type="radio" value="8" name="optradio" wire:model.defer="value"> 8</label>
-                            <label class="radio-inline mr-2"><input type="radio" value="16" name="optradio" wire:model.defer="value"> 16</label>
-                            <label class="radio-inline mr-2"><input type="radio" value="24" name="optradio" wire:model.defer="value"> 24</label>
-                            @error('value')
-                            <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                            @enderror
+                        <label class="radio-inline mr-2"><input type="radio" value="8" name="optradio" wire:model.defer="value"> 8</label>
+                        <label class="radio-inline mr-2"><input type="radio" value="16" name="optradio" wire:model.defer="value"> 16</label>
+                        <label class="radio-inline mr-2"><input type="radio" value="24" name="optradio" wire:model.defer="value"> 24</label>
+                        @error('value')
+                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="form-check">
@@ -155,8 +155,11 @@
                         </div>
                     </div>
                     <div class="form-group col-md-12">
-                        <label>Notes</label>
-                       <textarea class="form-control" wire:model.defer="notes"></textarea>
+                        <label>Notes</label> <br>
+                        <textarea class="form-control" wire:model.defer="notes"></textarea>
+                        @error('notes')
+                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                        @enderror
                         @error('notes')
                         <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
                         @enderror
@@ -182,32 +185,26 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Account Name</label>
-                        <input type="text" class="form-control" wire:model.defer="name" readonly>
-                        @error('name')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                        <h4>{{ $name }}</h4>
                     </div>
+                    @if ($email)
                     <div class="form-group col-md-12">
                         <label>Email</label>
-                        <input type="email" class="form-control" wire:model.defer="email" readonly>
-                        @error('email')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                        <h4>{{ $email }}</h4>
                     </div>
+                    @endif
+                    @if ($username)
                     <div class="form-group col-md-12">
                         <label>Username</label>
-                        <input type="text" class="form-control" wire:model.defer="username" readonly>
-                        @error('username')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                        <h4>{{ $username }}</h4>
                     </div>
+                    @endif
+                    @if ($website)
                     <div class="form-group col-md-12">
                         <label>Website</label>
-                        <input type="text" class="form-control" wire:model.defer="website" readonly>
-                        @error('website')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                        <h4>{{ $website }}</h4>
                     </div>
+                    @endif
                     <div class="form-group col-md-12">
                         <div class="input-group transparent-append">
                             <input type="text" class="form-control" id="view_{{ $password }}" wire:model.defer="password" placeholder="click to show password" readonly>
@@ -227,11 +224,13 @@
                         </div>
                     </div>
                     <div class="form-group col-md-12">
-                        <label>Notes</label>
-                        <input type="text" class="form-control" wire:model.defer="notes" readonly>
-                        @error('notes')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                        <label>Notes</label> <br>
+                        @if ($enableNotes)
+                        <button type="button" class="btn btn-primary btn-xxs mb-2" wire:click.prevent="showNotes('{{ $acctId }}')">Decrypt Notes</button>
+                        @endif
+                        @if ($showNotes)
+                        <h4>{{ $notes }}</h4>
+                        @endif
                     </div>
 
                 </div>
@@ -253,20 +252,20 @@
             </div>
             <div class="modal-body">
                 <form wire:submit.prevent="enterpass('{{ $acctId }}')">
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <input type="password" class="form-control" wire:model.defer="my_password" placeholder="enter password">
-                        @error('my_password')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <input type="password" class="form-control" wire:model.defer="my_password" placeholder="enter password">
+                            @error('my_password')
+                            <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" >Submit</button>
-                <a href="#" class="btn btn-danger light" wire:click.prevent="closeModal">Close</a>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" >Submit</button>
+                    <a href="#" class="btn btn-danger light" wire:click.prevent="closeModal">Close</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -279,20 +278,20 @@
             </div>
             <div class="modal-body">
                 <form wire:submit.prevent="enterEditPass('{{ $acctId }}')">
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <input type="password" class="form-control" wire:model.defer="my_password" placeholder="enter password">
-                        @error('my_password')
-                        <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
-                        @enderror
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <input type="password" class="form-control" wire:model.defer="my_password" placeholder="enter password">
+                            @error('my_password')
+                            <div  class="invalid-feedback animated fadeInUp" style="display: block;">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" >Submit</button>
-                <a href="#" class="btn btn-danger light" wire:click.prevent="closeModal">Close</a>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" >Submit</button>
+                    <a href="#" class="btn btn-danger light" wire:click.prevent="closeModal">Close</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
