@@ -45,7 +45,7 @@
                                     <td>{{ $account->name }}</td>
                                     <td>{{ $account->email }}</td>
                                     <td>{{ $account->username }}</td>
-                                    <td>{{ $account->website }}</td>
+                                    <td><a href="{{ $account->website }}" target="_blank" rel="noopener noreferrer">{{ $account->website }}</a></td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="#" class="btn btn-info shadow btn-xs sharp mr-1" wire:click.prevent="{{ $account->require_password == 1 ? 'show' : 'view' }}('{{ $account->id }}')"><i class="fa fa-eye"></i></a>
