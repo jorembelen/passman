@@ -223,6 +223,7 @@
                             </div>
                         </div>
                     </div>
+                    @if ($notes)
                     <div class="form-group col-md-12">
                         <label>Notes</label> <br>
                         @if ($enableNotes)
@@ -232,6 +233,7 @@
                         <h4>{{ $notes }}</h4>
                         @endif
                     </div>
+                    @endif
 
                 </div>
             </div>
